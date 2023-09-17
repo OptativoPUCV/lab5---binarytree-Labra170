@@ -60,29 +60,30 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) // Función 3. Para 
     return;
   }
   
-  TreeNode * current = tree->root;
-  TreeNode * parent = NULL;
-
   TreeNode * newNode = createTreeNode(key, value);
   if (newNode == NULL)
   {
     exit(EXIT_FAILURE);
   }
-  
-  while (current != NULL)
-    {
-      int rComparacion = tree->lower_than(key, current->pair->key);
 
-      if (rComparacion < 0)
-      {
-        parent = current;
-        current = current->left;
-      }
-      else
-      {
-        parent = current;
-        current = current->right;
-      }
+  TreeNode * current = tree->root;
+  TreeNode * parent = NULL;
+  
+  while (current != NULL) {
+        int cmp = tree->lower_than(key, current->pair->key);
+
+        if (cmp == 0) {
+            // La clave ya existe, no hacemos nada
+            free(newNode);
+            tree->current = current; // Restaurar 'current' al valor actual
+            return;
+        } else if (cmp < 0) {
+            parent = current;
+            current = current->left;
+        } else {
+            parent = current;
+            current = current->right;
+        }
     }
 
   newNode->parent = parent;
@@ -95,6 +96,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) // Función 3. Para 
   {
     parent->right = newNode;
   }
+  
   tree->current = newNode;
 }
 
