@@ -55,14 +55,57 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) // Función 
 
 void insertTreeMap(TreeMap * tree, void* key, void * value) // Función 3. Para insertar en el árbol
 {
+  if (searchTreeMap(tree, key) != NULL)
+  {
+    return;
+  }
   
+  TreeNode * current = tree->root;
+  TreeNode * parent = NULL;
+
+  TreeNode * newNode = createTreeNode(key, value);
+  if (newNode == NULL)
+  {
+    exit(EXIT_FAILURE);
+  }
+  
+  while (current != NULL)
+    {
+      int rComparacion = tree->lower_than(key, current->pair->key);
+
+      if (rComparacion < 0)
+      {
+        parent = current;
+        current = current->left;
+      }
+      else
+      {
+        parent = current;
+        current = current->right;
+      }
+    }
+
+  newNode->parent = parent;
+
+  if (parent == NULL)
+  {
+    tree->root = newNode;
+  }
+  else if (tree->lower_than(key, parent->pair->key) < 0)
+  {
+    parent->left = newNode;
+  }
+  else
+  {
+    parent->right = newNode;
+  }
+  tree->current = newNode;
 }
 
 TreeNode * minimum(TreeNode * x){
 
     return NULL;
 }
-
 
 void removeNode(TreeMap * tree, TreeNode* node) {
 
@@ -77,16 +120,13 @@ void eraseTreeMap(TreeMap * tree, void* key){
 
 }
 
-
-
-
 Pair * searchTreeMap(TreeMap * tree, void* key) // Función 2. Buscar en el árbol.
 {
   TreeNode * current = tree->root; // El current se mueve a la raíz del arbol.
 
   while (current != NULL) // Mientras haya elementos para "analizar"
     { // Entonces
-      int rComparacion = tree->lower_than(current->pair->key, key); 
+      int rComparacion = tree->lower_than(key, current->pair->key); 
       // Como la función regresa un entero por ser de comparación, se usa para ver a que lado ir.
       if (rComparacion == 0) // Si es el valor buscado
       {
