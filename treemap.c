@@ -86,7 +86,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) // Función 2. Buscar en el árb
 
   while (current != NULL) // Mientras haya elementos para "analizar"
     { // Entonces
-      int rComparacion = tree->lower_than(key, current->pair->key); 
+      int rComparacion = tree->lower_than(current->pair->key, key); 
       // Como la función regresa un entero por ser de comparación, se usa para ver a que lado ir.
       if (rComparacion == 0) // Si es el valor buscado
       {
