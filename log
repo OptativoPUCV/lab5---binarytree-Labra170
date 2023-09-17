@@ -153,3 +153,16 @@ Sun 17 Sep 2023 03:03:35 AM UTC:
  tests:  11|5
 total_score: 20/70
 e12fafd
+Sun 17 Sep 2023 03:09:28 AM UTC: 
+ treemap.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+In file included from test.c:4:
+treemap.c: In function ‘firstTreeMap’:
+treemap.c:234:25: error: expected ‘;’ before ‘}’ token
+  234 |     return current->pair
+      |                         ^
+      |                         ;
+  235 |   }
+      |   ~                      
+Compilation failed
+e3f6fb1

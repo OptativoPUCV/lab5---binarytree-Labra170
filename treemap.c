@@ -223,10 +223,20 @@ Pair * upperBound(TreeMap * tree, void* key) {
     return NULL;
 }
 
-Pair * firstTreeMap(TreeMap * tree) {
-    return NULL;
+Pair * firstTreeMap(TreeMap * tree) // Función 6.1. Primer pair del mapa.
+{
+  TreeNode * current = tree->root;
+  current = minimum(current);
+
+  if (current != NULL)
+  {
+    tree->current = current;
+    return current->pair
+  }
+  return NULL;
 }
 
-Pair * nextTreeMap(TreeMap * tree) {
+Pair * nextTreeMap(TreeMap * tree) // Función 6.2. Próximo pair después del current.
+{
     return NULL;
 }
