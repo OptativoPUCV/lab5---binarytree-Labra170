@@ -119,8 +119,68 @@ TreeNode * minimum(TreeNode * x) // Función 4. Para buscar el valor mínimo del
   return x;
 }
 
-void removeNode(TreeMap * tree, TreeNode* node) {
+void removeNode(TreeMap * tree, TreeNode* node) // Función 5. Borrar un nodo del árbol.
+{
+  if (node == NULL)
+  {
+    return;
+  }
 
+  TreeNode * parent = node->parent;
+
+  if (node->left == NULL && node->right == NULL)
+  {
+    if (parent == NULL)
+    {
+      free(node);
+      tree->root = NULL;
+    }
+    else
+    {
+      if (parent->left == node)
+      {
+        parent->left = NULL;
+      }
+      else
+      {
+        parent->right = NULL;
+      }
+      free(node);
+    }
+  }
+
+  else if (node->left != NULL && node->right != NULL)
+  {
+    TreeNode * minimumNode = minimun(node->right);
+
+    node->pair->key = minimumNode->pair->key;
+    node->pair->value = minimumNode->pair->value;
+
+    removeNode(tree, minimumNode);
+  }
+  else
+  {
+    TreeNode * hijo = (node->left != NULL) ? node->left : node->right;
+
+    if (parent == NULL)
+    {
+      tree->root = hijo;
+      hijo->parent = NULL;
+    }
+    else
+    {
+      if (parent->left == node)
+      {
+        parent->left = hijo;
+      }
+      else
+      {
+        parent->right = hijo;
+      }
+      hijo->parent = parent;
+    }
+    free(node);
+  }
 }
 
 void eraseTreeMap(TreeMap * tree, void* key){
