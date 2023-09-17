@@ -97,7 +97,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) // Función 2. Buscar en el árb
       {
         current = current->left; // Se sigue por la izquierda.
       }
-      else // Si no
+      else if (rComparacion > 0) // Si no
       {
         current = current->right; // Se sigue por la derecha.
       }
