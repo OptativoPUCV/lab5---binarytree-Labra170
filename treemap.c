@@ -143,6 +143,7 @@ void removeNode(TreeMap * tree, TreeNode* node) // Función 5. Borrar un nodo de
             }
             free(node);
         }
+  }
   else if (node->left != NULL && node->right != NULL)
   {
     TreeNode * minimumNode = minimum(node->right);
