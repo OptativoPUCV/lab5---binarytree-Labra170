@@ -128,22 +128,27 @@ void removeNode(TreeMap * tree, TreeNode* node) // Función 5. Borrar un nodo de
 
   TreeNode * parent = node->parent;
 
-  if (node->left == NULL && node->right == NULL) {
-        // Caso 1: Nodo sin hijos
-        if (parent == NULL) {
-            // Si es la raíz, simplemente lo eliminamos
-            free(node);
-            tree->root = NULL;
-        } else {
-            // Si no es la raíz, anulamos el puntero del padre
-            if (parent->left == node) {
-                parent->left = NULL;
-            } else {
-                parent->right = NULL;
-            }
-            free(node);
-        }
+  if (node->left == NULL && node->right == NULL) // Sin hijos.
+  {
+    if (parent == NULL) // Si no tiene padre, es decir, es la raíz, se elimina directamente.
+    {
+      free(node);
+      tree->root = NULL;
+    }
+    else
+    {
+      if (parent->left == node)
+      {
+        parent->left = NULL;
+      }
+      else
+      {
+        parent->right = NULL;
+      }
+      free(node);
+    }
   }
+
   else if (node->left != NULL && node->right != NULL)
   {
     TreeNode * minimumNode = minimum(node->right);
@@ -200,7 +205,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) // Función 2. Buscar en el árb
         tree->current = current; // Se actualiza el puntero
         return current->pair; // Se retorna el par.
       }
-      else if (rComparacion < 0) // Si es menor
+      else if (rComparacion > 0) // Si es menor
       {
         current = current->left; // Se sigue por la izquierda.
       }
