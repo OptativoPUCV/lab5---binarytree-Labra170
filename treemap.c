@@ -83,11 +83,11 @@ void eraseTreeMap(TreeMap * tree, void* key){
 Pair * searchTreeMap(TreeMap * tree, void* key) // Función 2. Buscar en el árbol.
 {
   TreeNode * current = tree->root; // El current se mueve a la raíz del arbol.
-  int rComparacion = tree->lower_than(key, current->pair->key); 
-  // Como la función regresa un entero por ser de comparación, se usa para ver a que lado ir.
 
   while (current != NULL) // Mientras haya elementos para "analizar"
     { // Entonces
+      int rComparacion = tree->lower_than(key, current->pair->key); 
+      // Como la función regresa un entero por ser de comparación, se usa para ver a que lado ir.
       if (rComparacion == 0) // Si es el valor buscado
       {
         tree->current = current; // Se actualiza el puntero
