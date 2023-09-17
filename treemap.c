@@ -151,7 +151,7 @@ void removeNode(TreeMap * tree, TreeNode* node) // Función 5. Borrar un nodo de
 
   else if (node->left != NULL && node->right != NULL)
   {
-    TreeNode * minimumNode = minimun(node->right);
+    TreeNode * minimumNode = minimum(node->right);
 
     node->pair->key = minimumNode->pair->key;
     node->pair->value = minimumNode->pair->value;
