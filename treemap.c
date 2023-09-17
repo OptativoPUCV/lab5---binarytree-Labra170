@@ -53,7 +53,7 @@ TreeMap * createTreeMap(int (*lower_than) (void* key1, void* key2)) // Función 
 }
 
 
-void insertTreeMap(TreeMap * tree, void* key, void * value) // Función 3
+void insertTreeMap(TreeMap * tree, void* key, void * value) // Función 3. Para insertar en el árbol
 {
   
 }
@@ -93,20 +93,19 @@ Pair * searchTreeMap(TreeMap * tree, void* key) // Función 2. Buscar en el árb
         tree->current = current; // Se actualiza el puntero
         return current->pair; // Se retorna el par.
       }
-      else if (rComparacion < 0) // Si es menor
+      else if (rComparacion < 0)
       {
-        current = current->left; // Se sigue por la izquierda.
+        current = current->left;
       }
-      else if (rComparacion > 0) // Si no
+      else
       {
-        current = current->right; // Se sigue por la derecha.
+        current = current->right;
       }
     }
 
   tree->current = NULL; // Si no se encuentra la clave, se establece en NULL.
   return NULL; // Como no se encontró, se retorna NULL.
 }
-
 
 Pair * upperBound(TreeMap * tree, void* key) {
     return NULL;
