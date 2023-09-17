@@ -128,27 +128,21 @@ void removeNode(TreeMap * tree, TreeNode* node) // Función 5. Borrar un nodo de
 
   TreeNode * parent = node->parent;
 
-  if (node->left == NULL && node->right == NULL)
-  {
-    if (parent == NULL)
-    {
-      free(node);
-      tree->root = NULL;
-    }
-    else
-    {
-      if (parent->left == node)
-      {
-        parent->left = NULL;
-      }
-      else
-      {
-        parent->right = NULL;
-      }
-      free(node);
-    }
-  }
-
+  if (node->left == NULL && node->right == NULL) {
+        // Caso 1: Nodo sin hijos
+        if (parent == NULL) {
+            // Si es la raíz, simplemente lo eliminamos
+            free(node);
+            tree->root = NULL;
+        } else {
+            // Si no es la raíz, anulamos el puntero del padre
+            if (parent->left == node) {
+                parent->left = NULL;
+            } else {
+                parent->right = NULL;
+            }
+            free(node);
+        }
   else if (node->left != NULL && node->right != NULL)
   {
     TreeNode * minimumNode = minimum(node->right);
