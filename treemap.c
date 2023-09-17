@@ -231,7 +231,7 @@ Pair * firstTreeMap(TreeMap * tree) // Función 6.1. Primer pair del mapa.
   if (current != NULL)
   {
     tree->current = current;
-    return current->pair
+    return current->pair;
   }
   return NULL;
 }
