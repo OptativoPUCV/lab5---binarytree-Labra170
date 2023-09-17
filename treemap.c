@@ -80,7 +80,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) // Función 3. Para 
     {
       int rComparacion = tree->lower_than(key, current->pair->key);
 
-      if (rComparacion < 0)
+      if (rComparacion > 0)
       {
         parent = current;
         current = current->left;
@@ -94,7 +94,7 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) // Función 3. Para 
 
   newNode->parent = parent;
 
-  if (tree->lower_than(key, parent->pair->key) < 0)
+  if (tree->lower_than(key, parent->pair->key) > 0)
   {
     parent->left = newNode;
   }
