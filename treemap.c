@@ -106,9 +106,17 @@ void insertTreeMap(TreeMap * tree, void* key, void * value) // Función 3. Para 
   tree->current = newNode;
 }
 
-TreeNode * minimum(TreeNode * x){
-
+TreeNode * minimum(TreeNode * x) // Función 4. Para buscar el valor mínimo del árbol.
+{
+  if (x == NULL)
+  {
     return NULL;
+  }
+  while (x->left != NULL)
+    {
+      x = x->left;
+    }
+  return x;
 }
 
 void removeNode(TreeMap * tree, TreeNode* node) {
