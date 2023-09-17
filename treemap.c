@@ -205,7 +205,7 @@ Pair * searchTreeMap(TreeMap * tree, void* key) // Función 2. Buscar en el árb
         tree->current = current; // Se actualiza el puntero
         return current->pair; // Se retorna el par.
       }
-      else if (rComparacion > 0) // Si es menor
+      else if (rComparacion < 0) // Si es menor
       {
         current = current->left; // Se sigue por la izquierda.
       }
