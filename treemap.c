@@ -238,5 +238,32 @@ Pair * firstTreeMap(TreeMap * tree) // Función 6.1. Primer pair del mapa.
 
 Pair * nextTreeMap(TreeMap * tree) // Función 6.2. Próximo pair después del current.
 {
+  if (tree->current == NULL)
+  {
     return NULL;
+  }
+  TreeNode * current = tree->current;
+  TreeNode * siguiente = NULL;
+
+  if (current->right != NULL)
+  {
+    siguiente = minimum(current->right);
+  }
+  else
+  {
+    TreeNode * parent = current->parent;
+    while (parent != NULL && current == parent->right)
+      {
+        current = parent;
+        parent = parent->parent;
+      }
+    siguiente = parent;
+  }
+
+  if (siguiente != NULL)
+  {
+    tree->current = siguiente;
+    return siguiente->pair;
+  }
+  return NULL;
 }
